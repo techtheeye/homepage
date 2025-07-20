@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tech The Eye</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
   <style>
     * {
       margin: 0;
@@ -35,7 +39,6 @@
       max-width: 1200px;
     }
 
-    /* Navbar */
     .navbar {
       background: linear-gradient(90deg, #001F3F, #003366);
       color: #fff;
@@ -82,49 +85,55 @@
       color: #ffd700;
     }
 
-    /* Hero Section */
     .hero {
-      background: url('https://source.unsplash.com/1600x600/?technology,innovation') no-repeat center center/cover;
-      color: #fff;
-      height: 70vh;
+      position: relative;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      position: relative;
+      background: linear-gradient(-45deg, #003366, #006699, #0099cc, #00cccc);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      overflow: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('web degine.jpg') no-repeat center center;
-  background-size: cover;
-  filter: brightness(0.5);
-  z-index: 0;
-}
-
-
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('web degine.jpg') no-repeat center center;
+      background-size: cover;
+      filter: brightness(0.5);
+      z-index: 0;
+    }
 
     .hero .container {
       position: relative;
       z-index: 1;
-        color:black;
+      color: #fff;
+      text-align: center;
     }
 
-    .hero h2 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      animation: fadeInUp 1s ease-out;
+    .hero h2.hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--hero-title-color);
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+      animation: colorShift 10s infinite linear;
     }
 
     .hero p {
-      font-size: 20px;
-      animation: slideIn 2s ease-out;
+      font-size: 1.25rem;
+      margin: 10px 0 20px;
     }
 
     .hero a {
-      margin-top: 20px;
       display: inline-block;
       padding: 10px 25px;
       background: #ffd700;
@@ -140,7 +149,6 @@
       background: #ffcc00;
     }
 
-    /* Sections */
     section {
       padding: 60px 0;
       opacity: 0;
@@ -153,13 +161,12 @@
       transform: translateY(0);
     }
 
-    .about, .news, .contact {
-      background: #f4f4f4aa;
-      margin-top: 20px;
+    .about, .news, .contact, .gallery {
+      background: #ffffffdd;
       border-radius: 15px;
       padding: 40px;
+      margin-top: 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      animation: zoomIn 1s ease;
     }
 
     .news ul {
@@ -168,17 +175,14 @@
       font-size: 18px;
     }
 
-    /* Footer */
     .footer {
       background: #001F3F;
       color: #fff;
       text-align: center;
       padding: 1.2rem 0;
       margin-top: 40px;
-      animation: fadeIn 2s ease-in;
     }
 
-    /* Chat Button */
     .chat-button {
       position: fixed;
       bottom: 20px;
@@ -198,53 +202,36 @@
     .chat-button:hover {
       background: #ffcc00;
     }
-      :root {
-  --hero-title-color: #ffd700; /* You can change this */
-}
 
-.hero-title {
-  font-size: 48px;
-  font-weight: 800;
-  color: var(--hero-title-color);
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-  animation: colorShift 10s infinite linear;
-}
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-/* Optional animated gradient color effect */
-@keyframes colorShift {
-  0%   { color: #ffd700; }
-  25%  { color: #00ffff; }
-  50%  { color: #ff69b4; }
-  75%  { color: #00ff7f; }
-  100% { color: #ffd700; }
-}
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
 
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 32px;
-  }
-}
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
 
+    @keyframes colorShift {
+      0%   { color: #ffd700; }
+      25%  { color: #00ffff; }
+      50%  { color: #ff69b4; }
+      75%  { color: #00ff7f; }
+      100% { color: #ffd700; }
+    }
 
-    /* Animations */
     @keyframes slideDown {
       from { transform: translateY(-100%); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      from { transform: translateY(50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(-100px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    @keyframes zoomIn {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
     }
 
     @keyframes bounce {
@@ -258,70 +245,25 @@
       100% { transform: scale(1); }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
       }
-
       .navbar nav ul {
         flex-direction: column;
-        margin-top: 10px;
+        gap: 10px;
       }
-
-      .hero h2 {
-        font-size: 32px;
+      .hero h2.hero-title {
+        font-size: 2rem;
       }
-
       .hero p {
-        font-size: 16px;
+        font-size: 1rem;
       }
     }
-      .gallery {
-  background: #fff;
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  animation: zoomIn 1s ease;
-}
-
-.gallery h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 32px;
-  color: #003366;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.gallery-grid img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
-}
-
-.gallery-grid img:hover {
-  transform: scale(1.05);
-}
-
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
 <header class="navbar">
   <div class="container logo-container">
     <img src="index.jpg" alt="Tech The Eye Logo" />
@@ -337,9 +279,7 @@
   </nav>
 </header>
 
-
-  <!-- Hero Section -->
- <section id="home" class="hero">
+<section id="home" class="hero">
   <div class="container">
     <h2 class="hero-title">Welcome to Tech The Eye</h2>
     <p>🌟 Empowering Digital Education & Innovation 🚀</p>
@@ -347,9 +287,14 @@
   </div>
 </section>
 
+<div id="clock" style="text-align:center; font-weight:bold; margin-top:10px;"></div>
+<script>
+  setInterval(() => {
+    const now = new Date();
+    document.getElementById('clock').innerText = now.toLocaleTimeString();
+  }, 1000);
+</script>
 
-  <!-- About Section -->
-  <!-- Insert after About section -->
 <section id="about" class="about show">
   <div class="container">
     <h2>📘 About Us</h2>
@@ -357,57 +302,66 @@
   </div>
 </section>
 
-<!-- 👇 New Gallery/Photo Section 👇 -->
 <section id="gallery" class="gallery show">
   <div class="container">
     <h2>📸 Gallery</h2>
     <div class="gallery-grid">
-      <img src="index.jpg" alt="Tech Image 1">
-      <img src="web degine.jpg" alt="Tech Image 2">
+      <a href="index.jpg" data-lightbox="gallery" data-title="Tech Image 1">
+        <img src="index.jpg" alt="Tech Image 1">
+      </a>
+      <a href="web degine.jpg" data-lightbox="gallery" data-title="Tech Image 2">
+        <img src="web degine.jpg" alt="Tech Image 2">
+      </a>
     </div>
   </div>
 </section>
 
-  <!-- News Section -->
-  <section id="news" class="news">
-    <div class="container">
-      <h2>📰 Latest News & Events</h2>
-      <ul>
-        <li>📅 July 2025: Launch of Digital Education Awareness Program</li>
-        <li>📌 Workshop on AI Tools in Schools - Coming Soon!</li>
-        <li>📣 New IT Curriculum updates announced.</li>
-      </ul>
-    </div>
-  </section>
+<section id="news" class="news">
+  <div class="container">
+    <h2>📰 Latest News & Events</h2>
+    <ul>
+      <li>📅 July 2025: Launch of Digital Education Awareness Program</li>
+      <li>📌 Workshop on AI Tools in Schools - Coming Soon!</li>
+      <li>📣 New IT Curriculum updates announced.</li>
+    </ul>
+  </div>
+</section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2>📞 Contact Us</h2>
-      <p>📧 Email: <strong>info@techtheeye.org</strong><br>📱 Phone: <strong>+91-9876543210</strong></p>
-    </div>
-  </section>
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>📞 Contact Us</h2>
+    <p>📧 Email: <strong>info@techtheeye.org</strong><br>📱 Phone: <strong>+91-9876543210</strong></p>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2025 Tech The Eye. All rights reserved.</p>
-    </div>
-  </footer>
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 Tech The Eye. All rights reserved.</p>
+  </div>
+</footer>
 
-  <!-- Chat Button -->
-  <button class="chat-button" onclick="alert('Chat feature coming soon! 🤖')">💬 Chat with us</button>
+<button class="chat-button" onclick="alert('Chat feature coming soon! 🤖')">💬 Chat with us</button>
 
-  <!-- Scroll Animation Script -->
-  <script>
-    const sections = document.querySelectorAll('section');
-    window.addEventListener('scroll', () => {
-      const trigger = window.innerHeight * 0.85;
-      sections.forEach(section => {
-        const top = section.getBoundingClientRect().top;
-        if (top < trigger) section.classList.add('show');
-      });
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+  AOS.init();
+  ScrollReveal().reveal('.hero-title, .about, .news, .contact, .gallery', {
+    delay: 200,
+    duration: 1000,
+    easing: 'ease-in-out',
+    reset: true
+  });
+
+  const sections = document.querySelectorAll('section');
+  window.addEventListener('scroll', () => {
+    const trigger = window.innerHeight * 0.85;
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if (top < trigger) section.classList.add('show');
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
