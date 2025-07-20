@@ -16,70 +16,42 @@
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
-.chat-button {
-  display: inline-block;
-  background-color: #007bff; /* Blue background */
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 12px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-  transition: all 0.3s ease;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 1000;
-}
-
-.chat-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
-  transform: translateY(-2px);
-}
 
     body {
       font-family: 'Poppins', sans-serif;
       color: #333;
-      animation: colorCycle 120s infinite linear;
-      transition: background 2s ease;
+      background: linear-gradient(120deg, #f0f8ff, #e6ffe6, #e0ffff);
+      background-size: 600% 600%;
+      animation: animatedBG 30s ease infinite;
     }
 
-    @keyframes colorCycle {
-      0%    { background: #f0f8ff; }
-      20%   { background: #fff8dc; }
-      40%   { background: #f5f5dc; }
-      60%   { background: #e6ffe6; }
-      80%   { background: #e0ffff; }
-      100%  { background: #f0f8ff; }
+    @keyframes animatedBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    .whatsapp-chat {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #25D366;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: background 0.3s, transform 0.2s;
-  z-index: 1000;
-}
 
-.whatsapp-chat:hover {
-  background-color: #1ebe5d;
-  transform: scale(1.05);
-}
+    .chat-button {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+      transition: all 0.3s ease;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+    }
 
-
-    .container {
-      width: 90%;
-      margin: auto;
-      max-width: 1200px;
+    .chat-button:hover {
+      background-color: #0056b3;
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+      transform: translateY(-2px);
     }
 
     .navbar {
@@ -93,7 +65,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      animation: slideDown 1s ease;
+      animation: fadeInDown 1s ease;
+    }
+
+    @keyframes fadeInDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .container {
+      width: 90%;
+      margin: auto;
+      max-width: 1200px;
     }
 
     .navbar .logo-container {
@@ -104,6 +87,12 @@
 
     .navbar .logo-container img {
       height: 40px;
+      animation: rotateIn 1.2s ease;
+    }
+
+    @keyframes rotateIn {
+      0% { transform: rotate(-200deg); opacity: 0; }
+      100% { transform: rotate(0); opacity: 1; }
     }
 
     .navbar .logo-container span {
@@ -141,9 +130,8 @@
     }
 
     @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
+      0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
 
     .hero::before {
@@ -152,7 +140,7 @@
       inset: 0;
       background: url('web degine.jpg') no-repeat center center;
       background-size: cover;
-      filter: brightness(0.5);
+      filter: brightness(0.4);
       z-index: 0;
     }
 
@@ -164,44 +152,52 @@
     }
 
     .hero h2.hero-title {
-      font-size: 3rem;
+      font-size: 3.2rem;
       font-weight: 800;
-      color: var(--hero-title-color);
       text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-      animation: colorShift 10s infinite linear;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { text-shadow: 0 0 10px #ffd700; }
+      50% { text-shadow: 0 0 20px #ffffff; }
     }
 
     .hero p {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       margin: 10px 0 20px;
+      animation: fadeInUp 1.5s ease;
     }
 
     .hero a {
       display: inline-block;
-      padding: 10px 25px;
+      padding: 12px 30px;
       background: #ffd700;
       color: #000;
       text-decoration: none;
       font-weight: bold;
       border-radius: 25px;
-      transition: background 0.3s;
-      animation: pulse 2s infinite;
+      transition: background 0.3s, transform 0.2s;
+      animation: bounce 2s infinite;
     }
 
     .hero a:hover {
       background: #ffcc00;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     section {
       padding: 60px 0;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease-out;
-    }
-
-    section.show {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .about, .news, .contact, .gallery {
@@ -210,23 +206,8 @@
       padding: 40px;
       margin-top: 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      animation: fadeInUp 1s ease;
     }
-
-    .news ul {
-      list-style: square;
-      margin-left: 20px;
-      font-size: 18px;
-    }
-
-    .footer {
-      background: #001F3F;
-      color: #fff;
-      text-align: center;
-      padding: 1.2rem 0;
-      margin-top: 40px;
-    }
-
-   
 
     .gallery-grid {
       display: grid;
@@ -246,28 +227,12 @@
       transform: scale(1.05);
     }
 
-    @keyframes colorShift {
-      0%   { color: #ffd700; }
-      25%  { color: #00ffff; }
-      50%  { color: #ff69b4; }
-      75%  { color: #00ff7f; }
-      100% { color: #ffd700; }
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    .footer {
+      background: #001F3F;
+      color: #fff;
+      text-align: center;
+      padding: 1.2rem 0;
+      margin-top: 40px;
     }
 
     @media (max-width: 768px) {
@@ -293,9 +258,8 @@
   <div class="container logo-container">
     <img src="index.jpg" alt="Tech The Eye Logo" />
     <span>Tech The Eye</span>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   </div>
-  <nav id="main-nav">
+  <nav>
     <ul>
       <li><a href="#home">🏠 Home</a></li>
       <li><a href="#about">📘 About</a></li>
@@ -323,26 +287,20 @@
   }, 1000);
 </script>
 
-<section id="about" class="about show">
+<section id="about" class="about" data-aos="fade-up">
   <div class="container">
     <h2>📘 About <span style="color:#003366;">Tech The Eye</span></h2>
-    <p>
-      <strong>Tech The Eye</strong> is a digital platform built to conduct <strong>competitive computer-based exams</strong> designed for school students and tech enthusiasts. Our mission is to nurture digital literacy and innovation in education through cutting-edge online testing tools and engaging content.
-    </p>
-    <ul class="about-highlights">
-      <li>✅ Conduct secure online computer exams</li>
-      <li>✅ Promote digital awareness & tech literacy</li>
-      <li>✅ Interactive and mobile-friendly platform</li>
-      <li>✅ compition for web developers  </li>
+    <p><strong>Tech The Eye</strong> is a digital platform built to conduct <strong>competitive computer-based exams</strong> designed for school students and tech enthusiasts.</p>
+    <ul>
+      <li>✅ Secure online exams</li>
+      <li>✅ Promote tech literacy</li>
+      <li>✅ Mobile-friendly platform</li>
+      <li>✅ Competitions for developers</li>
     </ul>
-    <p>
-      Whether you're a student preparing for school-level IT contests or a school looking to digitize exams, <strong>Tech The Eye</strong> is your trusted platform for a seamless and smart experience.
-    </p>
   </div>
 </section>
 
-
-<section id="gallery" class="gallery show">
+<section id="gallery" class="gallery" data-aos="zoom-in-up">
   <div class="container">
     <h2>📸 Gallery</h2>
     <div class="gallery-grid">
@@ -356,30 +314,27 @@
   </div>
 </section>
 
-<section id="news" class="news">
+<section id="news" class="news" data-aos="fade-right">
   <div class="container">
     <h2>📰 Latest News & Events</h2>
     <ul>
-      <li>🎉 27th July 2025: Official Launch of <strong>Tech The Eye</strong> – Empowering Computer-Based Competitive Exams Nationwide!</li>
+      <li>🎉 27th July 2025: Official Launch of <strong>Tech The Eye</strong>!</li>
       <li>📌 Workshop on AI Tools in Schools - Coming Soon!</li>
       <li>📣 New IT Curriculum updates announced.</li>
     </ul>
   </div>
 </section>
 
-<section id="contact" class="contact">
+<section id="contact" class="contact" data-aos="fade-left">
   <div class="container">
     <h2>📞 Contact Us</h2>
     <p>📧 Email: <strong><a href="mailto:techtheeye@gmail.com">techtheeye@gmail.com</a></strong><br>
-       📱 Phone/WhatsApp: <strong><a href="https://wa.me/919708637867" target="_blank">+91-9708637867</a></strong></p>
-    <div style="margin-top: 15px;">
-      <p>🔗 Follow us:</p>
-      <ul style="list-style: none; padding-left: 0;">
-        <li><a href="https://youtube.com/@techtheeye?si=fMV3kPo71ihlOE8f" target="_blank">▶️ YouTube</a></li>
-        <li><a href="https://www.instagram.com/techtheeye?igsh=YXA4MDMxcnk1b29h" target="_blank">📸 Instagram</a></li>
-        <li><a href="https://www.threads.com/@techtheeye" target="_blank">🧵 Threads</a></li>
-      </ul>
-    </div>
+    📱 Phone: <strong><a href="https://wa.me/919708637867" target="_blank">+91-9708637867</a></strong></p>
+    <p>🔗 Follow us:
+      <a href="https://youtube.com/@techtheeye" target="_blank">▶️ YouTube</a>,
+      <a href="https://www.instagram.com/techtheeye" target="_blank">📸 Instagram</a>,
+      <a href="https://www.threads.com/@techtheeye" target="_blank">🧵 Threads</a>
+    </p>
   </div>
 </section>
 
@@ -389,28 +344,12 @@
   </div>
 </footer>
 
-<button class="chat-button" onclick="alert('Chat feature coming soon! 🤖')">💬 Chat with us</button>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
 <script>
-  AOS.init();
-  ScrollReveal().reveal('.hero-title, .about, .news, .contact, .gallery', {
-    delay: 200,
+  AOS.init({
     duration: 1000,
-    easing: 'ease-in-out',
-    reset: true
-  });
-
-  const sections = document.querySelectorAll('section');
-  window.addEventListener('scroll', () => {
-    const trigger = window.innerHeight * 0.85;
-    sections.forEach(section => {
-      const top = section.getBoundingClientRect().top;
-      if (top < trigger) section.classList.add('show');
-    });
+    once: true
   });
 </script>
-
 </body>
 </html>
