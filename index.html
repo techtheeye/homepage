@@ -112,6 +112,40 @@
       font-weight: bold;
       transition: 0.3s;
     }
+.contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 12px;
+  color: #003366;
+}
+
+.contact a::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.contact a:hover {
+  color: #007bff;
+  transform: translateY(-1px);
+}
+
+.contact a[href*="youtube"]::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg');
+}
+
+.contact a[href*="instagram"]::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png');
+}
+
+.contact a[href*="threads"]::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6f/Threads_%28app%29_logo.svg');
+}
 
     .navbar ul li a:hover {
       color: #ffd700;
@@ -350,10 +384,11 @@
     <p>📧 Email: <strong><a href="mailto:techtheeye@gmail.com">techtheeye@gmail.com</a></strong><br>
     📱 Phone: <strong><a href="https://wa.me/919708637867" target="_blank">+91-9708637867</a></strong></p>
     <p>🔗 Follow us:
-      <a href="https://youtube.com/@techtheeye" target="_blank">▶️ YouTube</a>,
-      <a href="https://www.instagram.com/techtheeye" target="_blank">📸 Instagram</a>,
-      <a href="https://www.threads.com/@techtheeye" target="_blank">🧵 Threads</a>
-    </p>
+  <a href="https://youtube.com/@techtheeye" target="_blank">YouTube</a>
+  <a href="https://www.instagram.com/techtheeye" target="_blank">Instagram</a>
+  <a href="https://www.threads.com/@techtheeye" target="_blank">Threads</a>
+</p>
+
   </div>
 </section>
 
