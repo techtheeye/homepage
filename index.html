@@ -260,6 +260,56 @@
     .gallery-grid img:hover {
       transform: scale(1.05);
     }
+.contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 6px 12px 6px 0;
+  color: #003366;
+  transition: all 0.3s ease;
+}
+
+.contact a::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Email (Gmail Icon) */
+.contact a[href^="mailto"]::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.svg');
+}
+
+/* WhatsApp */
+.contact a[href*="wa.me"]::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg');
+}
+
+/* YouTube */
+.contact a[href*="youtube.com"]::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg');
+}
+
+/* Instagram */
+.contact a[href*="instagram.com"]::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png');
+}
+
+/* Threads */
+.contact a[href*="threads.com"]::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6f/Threads_%28app%29_logo.svg');
+}
+
+.contact a:hover {
+  color: #007bff;
+  transform: translateY(-1px);
+}
 
     .footer {
       background: #001F3F;
@@ -381,14 +431,15 @@
 <section id="contact" class="contact" data-aos="fade-left">
   <div class="container">
     <h2>📞 Contact Us</h2>
-    <p>📧 Email: <strong><a href="mailto:techtheeye@gmail.com">techtheeye@gmail.com</a></strong><br>
-    📱 Phone: <strong><a href="https://wa.me/919708637867" target="_blank">+91-9708637867</a></strong></p>
+    <p>
+      📧 Email: <strong><a href="mailto:techtheeye@gmail.com">techtheeye@gmail.com</a></strong><br>
+      📱 Phone: <strong><a href="https://wa.me/919708637867" target="_blank">+91-9708637867</a></strong>
+    </p>
     <p>🔗 Follow us:
-  <a href="https://youtube.com/@techtheeye" target="_blank">YouTube</a>
-  <a href="https://www.instagram.com/techtheeye" target="_blank">Instagram</a>
-  <a href="https://www.threads.com/@techtheeye" target="_blank">Threads</a>
-</p>
-
+      <a href="https://youtube.com/@techtheeye" target="_blank">YouTube</a>
+      <a href="https://www.instagram.com/techtheeye" target="_blank">Instagram</a>
+      <a href="https://www.threads.com/@techtheeye" target="_blank">Threads</a>
+    </p>
   </div>
 </section>
 
